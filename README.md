@@ -1,5 +1,7 @@
 # Consensus-Agnostic Replication Toolkit
 
+[![Licensed under GPL-3.0](https://img.shields.io/badge/license-GPLv3-blue)](./LICENSE)
+
 This repository contains a proof-of-concept implementation of the Consensus-Agnostic Replication Toolkit (CART).
 
 ## Repository Structure
@@ -9,7 +11,7 @@ This repository contains a proof-of-concept implementation of the Consensus-Agno
  * [`docker/`](docker) - contains Dockerfiles for building the project
  * [`wrapper/`](results) - the main codebase of the CART
 
-## Building the prototype
+## Building the Prototype
 The only prerequisite for building the protoytype is an available docker installation with a version greater or equal `version 19.03`. 
 The build process has been tested with different machines with `Ubuntu 22.04` or `Ubuntu 24.04` installations, and an M1 Mac with `macOS 12`.  
 
