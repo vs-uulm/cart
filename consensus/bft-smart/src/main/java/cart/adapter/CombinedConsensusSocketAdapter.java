@@ -177,7 +177,6 @@ public class CombinedConsensusSocketAdapter {
                 socketChannel.connect(applicationSocketAddress);
                 break;
             } catch (IOException e) {
-                System.out.println("Socket: " + socketAddress + " refused connection");
                 try {
                     Thread.sleep(reconnectDelay);
                 } catch (InterruptedException ex) {
