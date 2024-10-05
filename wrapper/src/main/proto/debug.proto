@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "enums.proto";
+
+option java_multiple_files = true;
+option java_package = "cart";
+option java_outer_classname = "DebugProto";
+option objc_class_prefix = "HLW";
+
+service ClientDebug {
+  rpc clientDebug (ClientDebugRequest) returns (ClientDebugResponse) {}
+}
+
+message ClientDebugRequest {
+  uint64 requestID = 1;
+}
+
+message ClientDebugResponse {
+  uint64 requestID = 1;
+  uint64 replicaID = 2;
+  bool builderIsPresent = 3;
+  bool responseIsPresent = 4;
+  bool signatureIsPresent = 5;
+  bool processedRequests = 6;
+  bool responded = 7;
+  RequestType requestType = 8;
+  bool aggregatedSignature = 9;
+  uint32 signatureSharesPresent = 10;
+}

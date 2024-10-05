@@ -1,0 +1,73 @@
+plugins {
+    id("java")
+    id("java-library")
+    id("distribution")
+    id("com.google.protobuf") version "0.9.4"
+}
+
+java {
+    sourceCompatibility = JavaLanguageVersion.of(19)
+    targetCompatibility = JavaLanguageVersion.of(19)
+    withSourcesJar()
+}
+
+jar {
+    archivesBaseName='CART'
+    project.version="0.1"
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs("build/generated/source/proto/main/grpc")
+            srcDirs("build/generated/source/proto/main/java")
+        }
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.25.0"
+    }
+
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.60.0'
+        }
+    }
+
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+}
+
+
+distributions {
+    main {
+        contents {
+            into("lib") {
+                from(jar)
+                from(configurations.runtimeClasspath)
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree('lib'){include '*.jar'}
+
+    implementation("io.grpc:grpc-protobuf:1.60.0")
+
+    implementation("com.google.protobuf:protobuf-java:3.25.0")
+
+    implementation("io.grpc:grpc-all:1.60.0")
+
+    implementation "javax.annotation:javax.annotation-api:1.3.2"
+}

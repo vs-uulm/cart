@@ -1,0 +1,62 @@
+<configuration debug="false">
+	<!-- Disable initial configuration logging -->
+	<statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+
+	<!-- Logging to console -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- Logging to console wih minimal output -->
+	<appender name="MIN-STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<target>System.out</target>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>NEUTRAL</onMismatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<encoder>
+			<pattern> -- %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="MIN-STDERR" class="ch.qos.logback.core.ConsoleAppender">
+		<target>System.err</target>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>WARN</level>
+		</filter>
+		<encoder>
+			<pattern> -- %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- https://logback.qos.ch/manual/appenders.html#AsyncAppender http://blog.takipi.com/how-to-instantly-improve-your-java-logging-with-7-logback-tweaks/ -->
+	<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="STDOUT"/>
+		<queueSize>1000</queueSize>
+	</appender>
+
+	<root level="INFO">
+		<!-- To use async logging use ref="ASYNC" instead -->
+		<appender-ref ref="MIN-STDOUT"/>
+		<appender-ref ref="MIN-STDERR"/>
+	</root>
+
+	<logger name="io.netty" level="OFF"/>
+
+	<logger name="bftsmart" level="ERROR"/>
+
+	<logger name="bftsmart.communication" level="OFF"/>
+
+	<logger name="bftsmart.proxy" level="ERROR"/>
+
+	<logger name="bftsmart.tom.core" level="INFO"/>
+
+</configuration>

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "cart";
+option java_outer_classname = "StatusProto";
+option objc_class_prefix = "HLW";
+
+enum StatusCode {
+  OK = 0;
+  FAILED = 1;
+}
+
+enum RequestType {
+  ORDERED_REQUEST = 0;
+  UNORDERED_REQUEST = 1;
+}
+
+enum ResponseType {
+  SINGLE_RESPONSE = 0;
+  BATCH_RESPONSE = 1;
+}

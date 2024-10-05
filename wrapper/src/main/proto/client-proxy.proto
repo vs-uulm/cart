@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "enums.proto";
+
+option java_multiple_files = true;
+option java_package = "cart";
+option java_outer_classname = "ClientProxyProto";
+option objc_class_prefix = "HLW";
+
+service ClientCommunication {
+  rpc requestPublicKey (PublicKeyRequest) returns (PublicKeyResponse) {}
+
+  rpc serviceStream (stream ServiceRequest) returns (stream ServiceResponse) {}
+}
+
+message PublicKeyRequest {}
+
+message PublicKeyResponse {
+  repeated bytes publicKeys = 1;
+  repeated uint32 thresholds = 2;
+}
+
+message ServiceRequest {
+  RequestType requestType = 1;
+  bytes request = 2;
+  uint64 id = 3;
+}
+
+message ServiceResponse {
+  RequestType requestType = 1;
+  ResponseType responseType = 2;
+  bytes response = 3;
+  uint64 id = 4;
+  bytes signature = 5;
+  repeated bytes auxiliaryData = 6;
+  uint32 auxiliaryIndex = 7;
+}
+

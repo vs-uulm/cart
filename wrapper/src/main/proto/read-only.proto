@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "cart.adapter";
+option java_outer_classname = "ReadOnlyProto";
+option objc_class_prefix = "HLW";
+
+service ReadOnly {
+  rpc submitReadOnlyRequests (stream ReadOnlyRequestBatch) returns (stream ReadOnlyResultHashes) {}
+}
+
+message ReadOnlyRequestBatch {
+  repeated uint64 id = 1;
+  repeated bytes requests = 2;
+}
+
+message ReadOnlyResultHashes {
+  repeated uint64 id = 1;
+  repeated bytes hashes = 2;
+}

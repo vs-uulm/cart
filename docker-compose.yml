@@ -1,0 +1,58 @@
+networks:
+  bft-smart-network:
+    ipam:
+      config:
+        - subnet: 174.31.0.0/16
+
+services:
+  container-1:
+    cap_add:
+      - NET_ADMIN
+    image: cart-monolith:latest
+    platform: linux/amd64
+    env_file: ./.env
+    ports:
+      - "52001:52000"
+      - "8081:8080"
+    networks:
+      bft-smart-network:
+        ipv4_address: 174.31.0.2
+
+  container-2:
+    cap_add:
+      - NET_ADMIN
+    image: cart-monolith:latest
+    platform: linux/amd64
+    env_file: ./.env
+    ports:
+      - "52002:52000"
+      - "8082:8080"
+    networks:
+      bft-smart-network:
+        ipv4_address: 174.31.0.3
+
+  container-3:
+    cap_add:
+      - NET_ADMIN
+    image: cart-monolith:latest
+    platform: linux/amd64
+    env_file: ./.env
+    ports:
+      - "52003:52000"
+      - "8083:8080"
+    networks:
+      bft-smart-network:
+        ipv4_address: 174.31.0.4
+
+  container-4:
+    cap_add:
+      - NET_ADMIN
+    image: cart-monolith:latest
+    platform: linux/amd64
+    env_file: ./.env
+    ports:
+      - "52004:52000"
+      - "8084:8080"
+    networks:
+      bft-smart-network:
+        ipv4_address: 174.31.0.5

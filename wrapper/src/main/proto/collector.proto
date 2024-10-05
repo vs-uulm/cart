@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+import "enums.proto";
+
+option java_multiple_files = true;
+option java_package = "cart";
+option java_outer_classname = "CollectorProto";
+option objc_class_prefix = "HLW";
+
+service ResponseCollector {
+  rpc submitResponse (SignedResponse) returns (SignatureAck) {}
+
+  rpc submitResponseStream (stream SignedResponse) returns (SignatureAck) {}
+
+  rpc submitResponseBatchStream (stream SignedBatchResponse) returns (SignatureAck) {}
+}
+
+message SignedResponse {
+  uint64 ID = 1;
+  RequestType requestType = 2;
+  bytes signature = 3;
+  uint32 signerIndex = 4;
+  bytes signedData = 5;
+  bool batchSignature = 6;
+}
+
+message SignedBatchResponse {
+  repeated uint64 requestIDs = 1;
+  repeated bytes signatures = 2;
+  repeated bytes signedData = 3;
+  uint32 signerIndex = 4;
+}
+
+message SignatureAck {}

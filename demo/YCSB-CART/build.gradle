@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'distribution'
+}
+
+sourceCompatibility = 19
+targetCompatibility = 19
+
+group = 'cart'
+version = '0.1'
+
+jar {
+    archivesBaseName='YCSB-CART'
+    project.version="0.1"
+}
+
+repositories {
+    mavenCentral()
+}
+
+distributions {
+    main {
+        contents {
+            into('lib') {
+                from jar
+                from(configurations.runtimeClasspath)
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree('lib') { include '*.jar' }
+
+    implementation("io.grpc:grpc-protobuf:1.60.0")
+
+    implementation("com.google.protobuf:protobuf-java:3.25.0")
+
+    implementation("io.grpc:grpc-all:1.60.0")
+
+    implementation "javax.annotation:javax.annotation-api:1.3.2"
+}
+

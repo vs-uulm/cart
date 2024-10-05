@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "cart.setup";
+option java_outer_classname = "IdManagementProto";
+option objc_class_prefix = "HLW";
+
+service IdManagement {
+  rpc submitConnectInfo (IdRequestMessage) returns (ConnectInfoResponse) {}
+}
+
+message IdRequestMessage {
+  string host = 1;
+  uint32 bftClientPort = 2;
+  uint32 bftReplicaPort = 3;
+}
+
+message ConnectInfoResponse {
+  uint32 id = 1;
+  repeated uint32 ids = 2;
+  repeated string hosts = 3;
+  repeated uint32 bftClientPorts = 4;
+  repeated uint32 bftReplicaPorts = 5;
+}

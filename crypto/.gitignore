@@ -1,0 +1,8 @@
+# Ignore binaries
+cmake-build-debug
+
+# macOS
+.DS_Store
+
+# IntelliJ
+.idea/
