@@ -22,7 +22,7 @@ In order to launch a local deployment with four replicas, simply execute `docker
 The deployment is ready for operation if all four containers output the following on the command line:
 ```
 ###################################
-	Ready to process operations    
+    Ready to process operations    
 ###################################
 ```
 
