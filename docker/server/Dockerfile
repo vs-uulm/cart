@@ -8,6 +8,7 @@ RUN apt-get install net-tools -y
 RUN apt-get install htop -y
 RUN apt-get install iproute2 -y
 RUN apt-get install openjdk-21-jdk-headless -y
+RUN apt-get install curl -y
 
 # Copy compiled libraries
 WORKDIR /usr/local/lib
